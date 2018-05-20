@@ -3,6 +3,7 @@ import hashlib
 from pymongo import MongoClient
 from pymongo import errors
 
+
 class AbstractBaseCar:
 
     DEBUG = True
@@ -93,7 +94,6 @@ class AbstractBaseCar:
     def __init__(self, response):
 
         self.__get_info__(response)
-        del self
 
     def _print_debug(self):
 

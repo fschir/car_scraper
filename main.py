@@ -115,14 +115,13 @@ class BroadSpider(scrapy.Spider):
         for key, value in self.Audi_Modelle.items():
             _tmp_url = BaseUrl + '&mmvmk0=%s' % str(self.brands["AUDI"]) + '&mmvmd0=%s' % str(value)
             for x in range(1, 20):
-                _tmp_url = _tmp_url + '&page=%s' % str(x)
-                Audi.append(_tmp_url)
+                Audi.append(_tmp_url + '&page=%s' % str(x))
+
 
         for key, value in self.BMW_Modelle.items():
             _tmp_url = BaseUrl + '&mmvmk0=%s' % str(self.brands["BMW"]) + '&mmvmd0=%s' % str(value)
             for x in range(1, 20):
-                _tmp_url = _tmp_url + '&page=%s' % str(x)
-                BMW.append(_tmp_url)
+                BMW.append(_tmp_url + '&page=%s' % str(x))
 
         return Audi, BMW
 
@@ -148,18 +147,17 @@ class BroadSpider(scrapy.Spider):
 
 class DeepSpider(scrapy.Spider):
 
+    tmp_var = 0
+
     def __init__(self):
         pass
 
     def start_requests(self):
-        x = 0
         for url in urls_to_scrape:
             yield scrapy.Request(url=url, callback=self.parse)
-            print(x)
-            x = x + 1
 
     def parse(self, request):
-        AutoscoutCar(request)
+        tst = AutoscoutCar(request)
 
 
 @defer.inlineCallbacks
